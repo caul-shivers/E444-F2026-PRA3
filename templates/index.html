@@ -38,12 +38,18 @@
     {% block page_content %}
         <div class="page-header">
             <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
-            <!-- {% if email %}<h1>Your UofT email is {{ email }}{% endif %}</h1> -->
-            <!-- <p>The date and time is {{ moment().format('LLLL') }}</p> -->
+            {% if email %}
+                {% if (email|lower).endswith('@utoronto.ca') %}
+                    <h1>Your UofT email is {{ email }}</h1>
+                {% else %}
+                    <h1>Please use your UofT email</h1>
+                {% endif %}
+            {% endif %}
         </div>
 
         {% import "bootstrap/wtf.html" as wtf %}
         {{ wtf.quick_form(form) }}
+
     {% endblock %}
 
 </div>
