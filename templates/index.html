@@ -24,14 +24,27 @@
 
 {% block content %}
 <div class="container">
-    <div class="page-header">
-        <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
-        {% if email %}<h1>Your UofT email is {{ email }}{% endif %}</h1>
-        <!-- <p>The date and time is {{ moment().format('LLLL') }}</p> -->
-    </div>
 
-    {% import "bootstrap/wtf.html" as wtf %}
-    {{ wtf.quick_form(form) }}
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% block page_content %}
+        <div class="page-header">
+            <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
+            <!-- {% if email %}<h1>Your UofT email is {{ email }}{% endif %}</h1> -->
+            <!-- <p>The date and time is {{ moment().format('LLLL') }}</p> -->
+        </div>
+
+        {% import "bootstrap/wtf.html" as wtf %}
+        {{ wtf.quick_form(form) }}
+    {% endblock %}
 
 </div>
 {% endblock %}
