@@ -79,7 +79,7 @@ def generate_reply(message):
         remembered_name = session.get('remembered_name')
         if remembered_name:
             return f"Your name is {remembered_name}."
-        return "I don't know your name yet — tell me!"
+        return "I don't understand."
 
     if "hello" in lower:
         return "Hello!"
