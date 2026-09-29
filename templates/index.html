@@ -61,9 +61,6 @@
 </div>
 {% endblock %}
 
-{% import "bootstrap/wtf.html" as wtf %}
-{{ wtf.quick_form(form) }}
-
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
