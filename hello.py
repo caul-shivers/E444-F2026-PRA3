@@ -36,6 +36,8 @@ def index():
     if form.validate_on_submit():
         name = form.name.data
         email = form.email.data
+        form.name.data = ''
+        form.email.data = ''
     return render_template('index.html', form=form, name=name, email=email)
 
 @app.route('/user/<name>')
