@@ -25,11 +25,19 @@
 {% block content %}
 <div class="container">
     <div class="page-header">
-        <h1>Hello Brian!</h1>
-        <p>The date and time is {{ moment().format('LLLL') }}</p>
+        <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
+        {% if email %}<h1>Your UofT email is {{ email }}{% endif %}</h1>
+        <!-- <p>The date and time is {{ moment().format('LLLL') }}</p> -->
     </div>
+
+    {% import "bootstrap/wtf.html" as wtf %}
+    {{ wtf.quick_form(form) }}
+
 </div>
 {% endblock %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+{{ wtf.quick_form(form) }}
 
 {% block scripts %}
     {{ super() }}
